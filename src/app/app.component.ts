@@ -34,7 +34,7 @@ export class AppComponent {
   searchService: SearchService;
   private stompClient;
 
-  title = 'ng-chat-app';
+  title = 'nng-search-app';
 
   constructor(searchService: SearchService) {
     this.searchService = searchService;
