@@ -19,10 +19,10 @@ import { Config, ChatMessage } from './models/Config';
  */
 
 export class AppComponent {
-  name: string = "";
+  searchText: string = "";
   message: string = "";
   applicationName: string = "Search Application";
-  isUserNameScreen: boolean = true;
+  isSearchInputScreen: boolean = true;
   isChatScreen: boolean = false;
   isValidationOk: boolean = true;
   isConnected: boolean = false;
@@ -32,7 +32,7 @@ export class AppComponent {
   searchResultList: SearchResult[] = [] //declare this model
   errorMessage: string;
   searchService: SearchService;
-  private stompClient;
+
 
   title = 'nng-search-app';
 
@@ -40,32 +40,7 @@ export class AppComponent {
     this.searchService = searchService;
   }
 
-  initializeWebSocketConnection() {
-    let ws = new SockJS(Config.serverWebSocketURL);
-    this.stompClient = Stomp.over(ws);
-    let that = this;
-    this.stompClient.connect({}, function (frame) {
-      that.isConnected = true;
-      that.stompClient.subscribe('/topic/public', (payload) => {
-        that.onMessageReceived(payload);
-      });
-      that.sendJoinMessage();
-    });
-  }
-
-  public sendJoinMessage() {
-    console.log("sending join message");
-    let chatMessage = new ChatMessage;
-    chatMessage.sender = this.name;
-    chatMessage.content = '';
-    chatMessage.type = 'JOIN';
-
-    this.isUserNameScreen = false;
-    this.isChatScreen = true;
-    this.isHistoryScreen = false;
-    this.stompClient.send('/app/chat.sendMessage', {}, JSON.stringify(chatMessage));
-  }
-
+ 
   /**
    * Extract details from the payload
    */
@@ -131,24 +106,6 @@ export class AppComponent {
     return Config.colors[index];
   }
 
-  /**
-   * Send message to socket
-   */
-  sendMessage(event) {
-    console.log("sending message :" + this.message);
-
-    var messageContent = this.message.trim();
-    if (messageContent && this.stompClient) {
-      var chatMessage = new ChatMessage;
-      chatMessage.sender = this.name;
-      chatMessage.content = this.message;
-      chatMessage.type = 'CHAT';
-    }
-
-    this.stompClient.send('/app/chat.sendMessage', {}, JSON.stringify(chatMessage));
-    //clear the message input
-    this.message = "";
-  }
 
   /**
    * get chat history
@@ -156,7 +113,7 @@ export class AppComponent {
   publishHistory(event) {
     console.log("fetching history");
     this.isChatScreen = false;
-    this.isUserNameScreen = false;
+    this.isSearchInputScreen = false;
     this.isHistoryScreen = true;
 
     this.searchService.getChatHistory().subscribe(resp => {
@@ -173,55 +130,50 @@ export class AppComponent {
    * todo: validate it 
    */
   searchBookAndMedia(event) {
-    console.log("starting search");
-    console.log("search text:"+this.name);
-    this.isChatScreen = false;
-    this.isUserNameScreen = false;
-    this.isHistoryScreen = false;
-    this.isSearchResultScreen = true;
-
-    this.searchService.getSearchResult(this.name).subscribe(resp => {
-      this.searchResultList = []; //clean the list
-      this.searchResultList = resp;
-    }, error => {
-      this.errorMessage = "Error in fetching the history";
-    });
-
+    console.log("search text:"+this.searchText);
+    //claean the list of result 
+    this.searchResultList = []; //clean the list
+    if(this.validateInput()) {
+      this.isSearchInputScreen = false;
+      this.isSearchResultScreen = true;
+      this.searchService.getSearchResult(this.searchText).subscribe(resp => {
+        this.searchResultList = resp;
+        
+        //if list is empty 
+        if(this.searchResultList.length==0) {
+          this.errorMessage = "No Matching records found, Please go back and search again";
+          this.isValidationOk = false;
+        }
+      }, error => {
+        console.log("error in searchig reocrds")
+        this.errorMessage = ":( Oops , something severe happened at the service layer.";
+        this.isValidationOk = false;
+      });
+    }
   }
 
-
-
-  /**
-   * Login and initialize web socket
-   */
-  search(event) {
-    console.log("text search: " + this.name);
-    if (this.name.trim().length != 0) {
-      this.initializeWebSocketConnection();
+  validateInput() {
+    var validateStatus = true;
+    if(this.searchText.trim().trim().length !=0) {
+      validateStatus = true;
       this.isValidationOk = true;
     } else {
+      validateStatus = false;
       this.isValidationOk = false;
+      this.errorMessage = "Please fill the valid text to search";
     }
-    this.isHistoryScreen=true;
+    return validateStatus;
   }
 
-  /**
-   * function called when back button on the chat history is triggered
-   */
-  backToChat() {
-    this.isChatScreen = true;
-    this.isHistoryScreen = false;
-    this.isUserNameScreen = false;
-  }
 
    /**
    * function called when back button on the chat history is triggered
    */
   backToSearch() {
-    this.isChatScreen = false;
-    this.isHistoryScreen = false;
-    this.isUserNameScreen = true;
+    this.isSearchInputScreen = true;
     this.isSearchResultScreen = false;
+    this.isValidationOk = true;
+    this.errorMessage="";
   }
 
 /**

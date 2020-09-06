@@ -128,7 +128,7 @@ button.accent {
   margin-top: -160px;
 }
 
-.chat-history-container {
+.search-result-container {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -171,7 +171,7 @@ button.accent {
   height: calc(100% - 150px);
 }
 
-#chat-history-page ul {
+#search-result-page ul {
   list-style-type: none;
   background-color: #FFF;
   margin: 0;
@@ -256,7 +256,7 @@ button.accent {
   margin-left: 5px;
 }
 
-.chat-header {
+.search-result-header {
   text-align: center;
   padding: 15px;
   border-bottom: 1px solid #ececec;
@@ -290,7 +290,7 @@ button.accent {
   width: 100%;
 }
 
-#chat-history-box {
+#search-result-box {
   border-style:solid;
    border-color: #777;
    border-width:0.5px;
@@ -327,7 +327,7 @@ button.accent {
  padding-right:8px;
 }
 
-#chat-history-control {
+#search-result-control {
   align-content: center;
   text-align: center;
   margin-left: 50px;

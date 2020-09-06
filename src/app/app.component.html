@@ -6,14 +6,14 @@
 </head>
 
 <body>
-    <alert type="danger" *ngIf="!isValidationOk" style="text-align: center">Please fill the name to enter</alert>
+    <alert type="danger" *ngIf="!isValidationOk" style="text-align: center">{{errorMessage}}</alert>
     <!--Search home page-->
-    <div id="username-page" *ngIf="isUserNameScreen">
+    <div id="username-page" *ngIf="isSearchInputScreen">
         <div class="username-page-container">
             <h1 class="title">{{applicationName}}</h1>
-            <form id="usernameForm" name="usernameForm">
+            <form id="searchForm" name="searchForm">
                 <div class="form-group">
-                    <input [(ngModel)]="name" id="name" placeholder="Enter text to search" name="username"
+                    <input [(ngModel)]="searchText" id="searchText" placeholder="Enter text to search" name="searchText"
                         class="form-control" />
                 </div>
                 <div class="form-group">
@@ -23,67 +23,16 @@
         </div>
     </div>
 
-    <!--Chat Division-->
-    <div id="chat-page" *ngIf="isChatScreen">
-        <div class="chat-container">
-            <div class="chat-header">
-                <span class="page-heading">{{applicationName}}</span><span class="logged-user">{{name}}</span> 
-            </div>
-            <div class="connecting" *ngIf="!isConnected">
-                Connecting...
-            </div>
-            <ul id="messageArea">
-
-            </ul>
-            <form id="messageForm" name="messageForm" nameForm="messageForm">
-                <div class="form-group">
-                    <div class="input-group clearfix">
-                        <input [(ngModel)]="message" id="message" placeholder="Type a message..." name="message"
-                            class="form-control" />
-                        <button type="submit" (click)="sendMessage($event)" class="primary">Send</button>
-                        <button type="button" (click)="publishHistory($event)" class="accent">Chat History</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-    <div id="chat-history-page" *ngIf="isHistoryScreen">
-        <div class="chat-history-container">
-            <div class="chat-header">
-                    <span class="page-heading">Search Result</span><span class="logged-user">Total found={{name}}</span>
-            </div>
-            <ul>
-                <li *ngFor="let chat of chatHistoryList">
-                    <div id="chat-history-box">
-                        <div class="sender">
-                            <span>{{chat.sender}}</span>
-                        </div>
-                        <div class="content">
-                            <span>{{chat.content}}</span>
-                        </div>
-                        <div class="date">
-                            <span>{{chat.timestamp}}</span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div id="chat-history-control">
-                <button type="button" (click)="backToChat($event)" class="primary">Back to Chat</button>
-            </div>
-        </div>
-    </div>
-
+   
     <!--search result division-->
-    <div id="chat-history-page" *ngIf="isSearchResultScreen">
-        <div class="chat-history-container">
-            <div class="chat-header">
+    <div id="search-result-page" *ngIf="isSearchResultScreen">
+        <div class="search-result-container">
+            <div class="search-result-header">
                     <span class="page-heading">Search Result</span>
             </div>
             <ul>
                 <li *ngFor="let result of searchResultList">
-                    <div id="chat-history-box">
+                    <div id="search-result-box">
                         <div class="sender">
                             <span>{{result.title}}</span>
                         </div>
@@ -96,7 +45,7 @@
                     </div>
                 </li>
             </ul>
-            <div id="chat-history-control">
+            <div id="search-result-control">
                 <button type="button" (click)="backToSearch($event)" class="primary">Back to Search</button>
             </div>
         </div>
