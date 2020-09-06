@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <alert type="danger" *ngIf="!isValidationOk" style="text-align: center">Please fill the name to enter</alert>
+    <!--Search home page-->
+    <div id="username-page" *ngIf="isUserNameScreen">
+        <div class="username-page-container">
+            <h1 class="title">{{applicationName}}</h1>
+            <form id="usernameForm" name="usernameForm">
+                <div class="form-group">
+                    <input [(ngModel)]="name" id="name" placeholder="Enter text to search" name="username"
+                        class="form-control" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" (click)="searchBookAndMedia($event)" class="accent username-submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--Chat Division-->
+    <div id="chat-page" *ngIf="isChatScreen">
+        <div class="chat-container">
+            <div class="chat-header">
+                <span class="page-heading">{{applicationName}}</span><span class="logged-user">{{name}}</span> 
+            </div>
+            <div class="connecting" *ngIf="!isConnected">
+                Connecting...
+            </div>
+            <ul id="messageArea">
+
+            </ul>
+            <form id="messageForm" name="messageForm" nameForm="messageForm">
+                <div class="form-group">
+                    <div class="input-group clearfix">
+                        <input [(ngModel)]="message" id="message" placeholder="Type a message..." name="message"
+                            class="form-control" />
+                        <button type="submit" (click)="sendMessage($event)" class="primary">Send</button>
+                        <button type="button" (click)="publishHistory($event)" class="accent">Chat History</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="chat-history-page" *ngIf="isHistoryScreen">
+        <div class="chat-history-container">
+            <div class="chat-header">
+                    <span class="page-heading">Search Result</span><span class="logged-user">Total found={{name}}</span>
+            </div>
+            <ul>
+                <li *ngFor="let chat of chatHistoryList">
+                    <div id="chat-history-box">
+                        <div class="sender">
+                            <span>{{chat.sender}}</span>
+                        </div>
+                        <div class="content">
+                            <span>{{chat.content}}</span>
+                        </div>
+                        <div class="date">
+                            <span>{{chat.timestamp}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div id="chat-history-control">
+                <button type="button" (click)="backToChat($event)" class="primary">Back to Chat</button>
+            </div>
+        </div>
+    </div>
+
+    <!--search result division-->
+    <div id="chat-history-page" *ngIf="isSearchResultScreen">
+        <div class="chat-history-container">
+            <div class="chat-header">
+                    <span class="page-heading">Search Result</span>
+            </div>
+            <ul>
+                <li *ngFor="let result of searchResultList">
+                    <div id="chat-history-box">
+                        <div class="sender">
+                            <span>{{result.title}}</span>
+                        </div>
+                        <div class="content">
+                            <span>{{result.type}}</span>
+                        </div>
+                        <div class="date">
+                            <span>{{result.information}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div id="chat-history-control">
+                <button type="button" (click)="backToSearch($event)" class="primary">Back to Search</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p style="float: right; margin-right: 5%" >Assigngnment solution - Tayab Hussain</p>
+    </div>
+
+
+
+    <router-outlet></router-outlet>
+</body>
+
+</html>
