@@ -104,11 +104,11 @@ button.accent {
   color: #fff;
 }
 
-#username-page {
+#search-home-page {
   text-align: center;
 }
 
-.username-page-container {
+.search-home-page-container {
   background: #fff;
   box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
   border-radius: 2px;
@@ -139,7 +139,7 @@ button.accent {
   position: relative;
 }
 
-.username-page-container .username-submit {
+.search-home-page-container .search-submit {
   margin-top: 10px;
 }
 
@@ -306,7 +306,7 @@ button.accent {
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.sender {
+.search-item-title {
  font-family: verdana;
  font-style: italic;
  font-size: 12px;
@@ -319,7 +319,7 @@ button.accent {
  padding-left:15px;
 }
 
-.date {
+.search-item-artist {
  text-align: right;
  font-family: Times New Roman;
  font-size: 15px;

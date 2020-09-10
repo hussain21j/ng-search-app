@@ -8,8 +8,8 @@
 <body>
     <alert type="danger" *ngIf="!isValidationOk" style="text-align: center">{{errorMessage}}</alert>
     <!--Search home page-->
-    <div id="username-page" *ngIf="isSearchInputScreen">
-        <div class="username-page-container">
+    <div id="search-home-page" *ngIf="isSearchInputScreen">
+        <div class="search-home-page-container">
             <h1 class="title">{{applicationName}}</h1>
             <form id="searchForm" name="searchForm">
                 <div class="form-group">
@@ -17,7 +17,7 @@
                         class="form-control" />
                 </div>
                 <div class="form-group">
-                    <button type="submit" (click)="searchBookAndMedia($event)" class="accent username-submit">Search</button>
+                    <button type="submit" (click)="searchBookAndMedia($event)" class="accent search-submit">Search</button>
                 </div>
             </form>
         </div>
@@ -33,13 +33,13 @@
             <ul>
                 <li *ngFor="let result of searchResultList">
                     <div id="search-result-box">
-                        <div class="sender">
+                        <div class="search-item-title">
                             <span>Title : {{result.title}}</span>
                         </div>
-                        <div class="content">
+                        <div class="search-item-type">
                             <span>{{result.type}}</span>
                         </div>
-                        <div class="date">
+                        <div class="search-item-artist">
                             <span>Author/artist: </span>
                             <span>{{result.authorsOrArtists}}</span>
                         </div>

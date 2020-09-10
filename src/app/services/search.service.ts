@@ -16,10 +16,6 @@ import { SearchResult } from '../models/SearchResult';
 export class SearchService {
   constructor(private _http: HttpClient) { };
 
-  getChatHistory(): Observable<ChatHistory[]> {
-    return this._http.get<ChatHistory[]>(Config.apiBaseURL + Config.endPointChatHistory);
-  }
-
   /**
    * call the search api 
    */
