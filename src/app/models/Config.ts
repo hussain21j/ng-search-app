@@ -18,7 +18,7 @@ export class Config {
     static serverWebSocketURL: string = "http://localhost:8080/ws";
     static apiBaseURL: string = "http://localhost:8080/searchservice/"
     static endPointChatHistory: string = "chat/history";
-    static searchApiURL: string = "search?name=";
+    static searchApiURL: string = "search?text=";
 
 }
 

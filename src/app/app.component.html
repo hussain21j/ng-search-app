@@ -34,13 +34,14 @@
                 <li *ngFor="let result of searchResultList">
                     <div id="search-result-box">
                         <div class="sender">
-                            <span>{{result.title}}</span>
+                            <span>Title : {{result.title}}</span>
                         </div>
                         <div class="content">
                             <span>{{result.type}}</span>
                         </div>
                         <div class="date">
-                            <span>{{result.information}}</span>
+                            <span>Author/artist: </span>
+                            <span>{{result.authorsOrArtists}}</span>
                         </div>
                     </div>
                 </li>
