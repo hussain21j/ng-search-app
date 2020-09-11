@@ -1,8 +1,11 @@
-* {
+* 
+/*
+{
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+*/
 
 html,body {
   height: 100%;
@@ -135,40 +138,13 @@ button.accent {
   background-color: #fff;
   box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
   margin-top: 30px;
-  height: 580px;
+  margin-bottom: 30px;
+  height: 800px;
   position: relative;
 }
 
 .search-home-page-container .search-submit {
   margin-top: 10px;
-}
-
-
-#chat-page {
-  position: relative;
-  height: 100%;
-}
-
-.chat-container {
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #fff;
-  box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-  margin-top: 30px;
-  height: 500px;
-  position: relative;
-}
-
-
-#chat-page ul {
-  list-style-type: none;
-  background-color: #FFF;
-  margin: 0;
-  overflow: auto;
-  overflow-y: scroll;
-  padding: 0 20px 0px 20px;
-  height: calc(100% - 150px);
 }
 
 #search-result-page ul {
@@ -179,81 +155,6 @@ button.accent {
   overflow-y: scroll;
   padding: 0 20px 0px 20px;
   height: calc(100% - 150px);
-}
-
-
-
-#chat-page #messageForm {
-  padding: 20px;
-}
-
-#chat-page ul li {
-  line-height: 1.5rem;
-  padding: 10px 20px;
-  margin: 0;
-  border-bottom: 1px solid #f4f4f4;
-}
-
-#chat-page ul li p {
-  margin: 0;
-}
-
-
-
-#chat-page .event-message {
-  width: 100%;
-  text-align: center;
-  clear: both;
-}
-
-#chat-page .event-message p {
-  color: #777;
-  font-size: 14px;
-  word-wrap: break-word;
-}
-
-
-#chat-page .chat-message {
-  padding-left: 68px;
-  position: relative;
-}
-
-#chat-page .chat-message i {
-  position: absolute;
-  width: 42px;
-  height: 42px;
-  overflow: hidden;
-  left: 10px;
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 18px;
-  line-height: 42px;
-  color: #fff;
-  text-align: center;
-  border-radius: 50%;
-  font-style: normal;
-  text-transform: uppercase;
-}
-
-#chat-page .chat-message span {
-  color: #333;
-  font-weight: 600;
-}
-
-#chat-page .chat-message p {
-  color: #43464b;
-}
-
-#messageForm .input-group input {
-  float: left;
-  width: 50%;
-}
-
-#messageForm .input-group button {
-  float: left;
-  width: auto;
-  height: 38px;
-  margin-left: 5px;
 }
 
 .search-result-header {
@@ -269,26 +170,7 @@ button.accent {
   text-align: center;
 }
 
-.logged-user {
-  float: right;
-  margin-right: 5px;
-  background-color: #c8c8c8; 
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-radius: 25px;
-  font-weight: 700;
-}
 
-.connecting {
-  padding-top: 5px;
-  text-align: center;
-  color: #777;
-  position: absolute;
-  top: 65px;
-  width: 100%;
-}
 
 #search-result-box {
   border-style:solid;

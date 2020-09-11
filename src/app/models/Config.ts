@@ -20,12 +20,3 @@ export class Config {
     static searchApiURL: string = "search?text=";
 
 }
-
-/**
- * Chat message class 
- */
-export class ChatMessage {
-    sender: string;
-    content: string;
-    type: string;
-}
